@@ -7,13 +7,10 @@ export const fetchPhotos = createAsyncThunk(
   async function ({ camera, date }) {
     const response = await fetch(
       URL +
-        `sol=${1000}&page=${10}&api_key=${api_key}&camera=${camera}&earth_date=${date
+        `camera=${camera}&earth_date=${date
           .toISOString()
-          .substring(0, 10)}`
+          .substring(0, 10)}&api_key=${api_key}`
     );
-    // const response = await fetch(
-    //   'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=10&api_key=0rahcpm3Dhq7uynyCcvyIgjULkyQWV7m7DTipNsy&camera=MAST&earth_date=2015-06-03'
-    // );
     const data = await response.json();
     return data;
   }
